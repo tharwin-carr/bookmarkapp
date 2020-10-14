@@ -16,5 +16,5 @@ export default function Rating(props) {
 }
 
 Rating.propTypes = {
-  value: PropTypes.number
+  value: PropTypes.oneOf([1, 2, 3, 4, 5]).isRequired,
 };

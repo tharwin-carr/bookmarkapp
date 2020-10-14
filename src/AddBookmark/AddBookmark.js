@@ -1,4 +1,5 @@
 import React, { Component } from  'react';
+import PropTypes from 'prop-types'
 import BookmarksContext from '../BookmarksContext';
 import config from '../config'
 import './AddBookmark.css';
@@ -8,6 +9,11 @@ const Required = () => (
 )
 
 class AddBookmark extends Component {
+  static propTypes = {
+      history: PropTypes.shape({
+        push: PropTypes.func,
+      }).isRequired,
+  }
   static contextType = BookmarksContext;
 
   state = {
@@ -22,7 +28,7 @@ class AddBookmark extends Component {
       title: title.value,
       url: url.value,
       description: description.value,
-      rating: rating.value,
+      rating: Number(rating.value),
     }
     this.setState({ error: null })
     fetch(config.API_ENDPOINT, {
